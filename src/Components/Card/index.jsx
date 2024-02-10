@@ -1,11 +1,12 @@
 import { useContext } from 'react'
 import { ShoppingCartContext } from '../../Context'
-import { PlusIcon } from '@heroicons/react/24/solid'
+import { CheckIcon, PlusIcon } from '@heroicons/react/24/solid'
 const Card =(data) => {
     const context = useContext(ShoppingCartContext)
     const showProduct= (productDetail)=>{
         context.openProductDetail()
         context.setProductToShow(productDetail)
+        context.closeCheckoutSideMenu()
     }
     const addProductsToCart =(event, productData) =>{
         event.stopPropagation()
@@ -15,6 +16,38 @@ const Card =(data) => {
         context.closeProductDetail()    
         
     }
+    
+    const renderIcon=(id)=>{
+        const isInCart = context.cartProducts.filter(product => product.id == id).length > 0
+        if(isInCart){
+            return(
+                <div className='absolute 
+                    top-0 right-0 
+                    flex justify-center items-center 
+                    bg-black
+                    w-6 h-6
+                    rounded-full m-2 p-1'   
+                    >
+                       <CheckIcon className='w-6 h-6 text-white'/>
+                    </div>
+            )
+        }else{
+            return(
+                <div className='absolute 
+                    top-0 right-0 
+                    flex justify-center items-center 
+                    bg-white
+                    w-6 h-6
+                    rounded-full m-2 p-1'   
+                    onClick={(event)=>addProductsToCart(event,data.data)}
+                    >
+                       <PlusIcon className='w-6 h-6 text-black'/>
+                    </div>
+            )
+        }
+        
+    }
+
     return (
         <div className='bg-white cursor-pointer w-56 h-60 rounded-lg'
         onClick={()=>showProduct(data.data)}
@@ -26,16 +59,7 @@ const Card =(data) => {
                 <img  className='w-full h-full object-cover rounded-lg ' 
                 src='https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
                 alt={data.data.title} />
-                <div className='absolute 
-                top-0 right-0 
-                flex justify-center items-center 
-                bg-white
-                w-6 h-6
-                rounded-full m-2 p-1'   
-                onClick={(event)=>addProductsToCart(event,data.data)}
-                >
-                   <PlusIcon className='w-6 h-6 text-black'/>
-                </div>
+                {renderIcon(data.data.id)}
             </figure>
             <p className="flex justify-between"> 
                 <span className="text-sm font-light">{data.data.title}</span>
