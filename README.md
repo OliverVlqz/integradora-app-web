@@ -1,8 +1,17 @@
-# React + Vite
+# SIAHVA - Sistema Integral para la Admisnistracion del Hotel Real de Valle
+## App-Web - Proyecto integrador de 5to cuatrimestre 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Descripción:
+El proyecto consiste en la creacion de una aplicacion movil que permita a los usuarios realizar reservaciones, consultar la disponibilidad de habitaciones, consultar los servicios que ofrece el hotel, asi como la posibilidad de realizar el pago de la estancia.
+Ademas de una aplicacion web que permita a los administradores del hotel llevar un control de sus empleados, habitaciones, servicios contratados, asi como la posibilidad de realizar el cobro de la estancia.
 
-Currently, two official plugins are available:
+### Integrantes:
+- **Noe Leonel Aldama Carrasco**
+- **Elena Guadalupe Gutierrez**
+- **Oliver Martinez Velasquez**
+- **Rolando Perez Bahena**
+- **Lizbeth Satibañez Cruz**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Tecnologias utilizadas para la App-Web:
+- **React**
+- **Tailwind**
