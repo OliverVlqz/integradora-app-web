@@ -1,14 +1,30 @@
-import{XMarkIcon} from '@heroicons/react/24/solid'
+
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import{XMarkIcon} from '@heroicons/react/24/solid'
 import { ShoppingCartContext } from '../../Context'
 import OrderCard from '../OrderCard'
+import {totalPrice} from '../../utils'
 const CheckoutSideMenu=()=>{
     const context = useContext(ShoppingCartContext)
     console.log('Cart', context.cartProducts)
     
     const handleDelete = (id) =>{
+        context.setCount(context.count - 1)
         const filteredProducts = context.cartProducts.filter(product => product.id != id)
         context.setCartProducts(filteredProducts)
+    }
+    const handleCheckout = () =>{
+        const orderToAdd = {
+            date:'01.02.23',
+            products: context.cartProducts,
+            totalProducts: context.cartProducts.length,
+            totalPrice: totalPrice(context.cartProducts)
+        }
+        context.setOrder([...context.order, orderToAdd])
+        context.setCartProducts([])
+        context.setCount(0)
+        context.closeCheckoutSideMenu()
     }
 
     return(
@@ -22,7 +38,7 @@ const CheckoutSideMenu=()=>{
                 </div>
 
             </div>
-            <div className='px-6 overflow-y-auto'>
+            <div className='px-6 overflow-y-auto flex-1'>
             {
                 context.cartProducts.map(product =>(
                     <OrderCard 
@@ -36,6 +52,17 @@ const CheckoutSideMenu=()=>{
 
                     ))
             }
+            </div>
+            <div className='px-6 mb-6'>
+                <p className='flex justify-between items-center mb-2'>
+                    <span className='font-light'>Total:</span>
+                    <span className='font-medium text-2xl'>${totalPrice(context.cartProducts)}</span>
+                </p>
+                <Link to='/my-orders/last'>
+                <button className='w-full bg-black py-3 text-white rounded-lg' onClick={()=> handleCheckout()} >Checkout</button>
+                
+                </Link>
+
             </div>
             
 
