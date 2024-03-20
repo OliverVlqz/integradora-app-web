@@ -1,6 +1,4 @@
 
-import Layout from '../Layout'
-
 export default function Welcome() {
   return (
     <div>
