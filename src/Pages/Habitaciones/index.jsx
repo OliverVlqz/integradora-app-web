@@ -1,5 +1,3 @@
-
-
 import { useContext } from "react"
 import Card from "../../Components/Card"
 import Layout from "../../Components/Layout"
@@ -31,7 +29,7 @@ function Habitaciones() {
    
     <Layout>
       <div className="flex w-80 items-center justify-center relative mb-4">
-          <h1 className="font-medium text-x l">Home</h1>
+          <h1 className="font-medium text-x l">Miscelaneos</h1>
       </div>
       <input className="rounded-lg border-black border w-80 p-4 mb-4 focus:outline-none"
       onChange={(event)=>{ context.setSearchByTitle(event.target.value)}} 
