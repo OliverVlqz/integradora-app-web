@@ -10,19 +10,21 @@ import Navbar from '../../Components/Navbar'
 import { ShoppingCartProvider } from '../../Context'
 import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 import Habitaciones from '../Habitaciones'
+import Servicios from '../Servicios'
+import UsuariosInfo from '../Admin/UsuariosInfo'
 
 
 const AppRoutes = () => {
   let routes = useRoutes([
     {path:'/',element:<Home/>},
     {path:'/habitaciones',element:<Habitaciones/>},
-    
+    {path:'/servicios',element:<Servicios/>},
     {path:'/my-account',element:<MyAccount/>},
     {path:'/my-order',element:<MyOrder/>},
     {path:'/my-orders',element:<MyOrders/>},
     {path:'/my-orders/last',element:<MyOrder/>},
     {path:'/my-orders/:id',element:<MyOrder/>},
-
+    {path:'/admin/users',element:<UsuariosInfo/>},
     {path:'/sign-in',element:<SignIn/>},
     {path:'*',element:<NotFound/>}
 
