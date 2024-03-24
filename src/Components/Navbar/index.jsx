@@ -41,6 +41,11 @@ const Navbar =() => {
                     Usuarios
                 </NavLink>
             </li>
+            <li>
+                <NavLink to={'/admin/habitaciones'} className={({isActive}) => isActive ? activeStyle: undefined}>
+                    Habitaciones
+                </NavLink>
+            </li>
           
 
         </ul>

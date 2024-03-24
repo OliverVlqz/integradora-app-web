@@ -29,8 +29,9 @@ export default function Index() {
         </div>
         </div>
           <Welcome/>
-          <HabitacionesCard/>
-          <HabitacionesCard/>
+          <HabitacionesCard  tipo='Normal' capacidad_personas={2} cantidad_camas={1} />
+          <HabitacionesCard  tipo='Suit' capacidad_personas={10} cantidad_camas={5} />
+          
 
       
     </Layout>

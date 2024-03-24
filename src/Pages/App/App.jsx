@@ -12,7 +12,7 @@ import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 import Habitaciones from '../Habitaciones'
 import Servicios from '../Servicios'
 import UsuariosInfo from '../Admin/UsuariosInfo'
-
+import HabitacionesForm from '../Admin/HabitacionesInfo'
 
 const AppRoutes = () => {
   let routes = useRoutes([
@@ -25,6 +25,7 @@ const AppRoutes = () => {
     {path:'/my-orders/last',element:<MyOrder/>},
     {path:'/my-orders/:id',element:<MyOrder/>},
     {path:'/admin/users',element:<UsuariosInfo/>},
+    {path:'/admin/habitaciones',element:<HabitacionesForm/>},
     {path:'/sign-in',element:<SignIn/>},
     {path:'*',element:<NotFound/>}
 
