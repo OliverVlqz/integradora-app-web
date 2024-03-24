@@ -48,6 +48,14 @@ export const ShoppingCartProvider = ({children}) =>{
      const openCheckoutSideMenu =() => setIsCheckoutSideMenuOpen(true)
      const closeCheckoutSideMenu =() => setIsCheckoutSideMenuOpen(false)
 
+    // UserModal Open/Close
+    const [isUserModalOpen, setIsUserModalOpen] = useState(false)
+    const openUserModal = () => setIsUserModalOpen(true)
+    const closeUserModal = () => setIsUserModalOpen(false)
+    //User To Modify
+    const [userToModify, setUserToModify] = useState({})
+
+
 
     return(
         <ShoppingCartContext.Provider value={{
@@ -71,6 +79,11 @@ export const ShoppingCartProvider = ({children}) =>{
             setSearchByTitle,
             filteredItems,
             setFilteredItems,
+            isUserModalOpen,
+            openUserModal,
+            closeUserModal,
+            userToModify,
+            setUserToModify
             }}>
             {children}
         </ShoppingCartContext.Provider>

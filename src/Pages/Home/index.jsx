@@ -19,7 +19,7 @@ export default function Index() {
   return (
     <Layout>
         <div className="min-w-max  ">
-        <img className="h-96 bg-local" src="../../../public/inicioalberca.webp" alt="" />
+        <img className="h-96 bg-local rounded-md" src="../../../public/inicioalberca.webp" alt="" />
         <div className="bg-[#e8eee5] h-14 flex justify-center content-center rounded-lg w-[40rem] m-auto  ">
           <form action=""  className="">
             <input type="date" value={null} className="bg-transparent m-3 " />

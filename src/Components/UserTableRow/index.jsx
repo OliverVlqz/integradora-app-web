@@ -1,7 +1,15 @@
-
+import  { useContext } from 'react'
+import { ShoppingCartContext } from '../../Context'
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid'
+
 export default function UserTableRow(props) {
     const{nombre, rol, status} = props
+    const context = useContext(ShoppingCartContext)
+    const showUserModal = () => { 
+        context.openUserModal()
+        console.log('showUserModal')
+        console.log(context.isUserModalOpen)
+    }
   return (
     <tr className="text-gray-700">
     <td className="px-4 py-3 border">
@@ -21,8 +29,9 @@ export default function UserTableRow(props) {
       <span className={`px-2 py-1 font-semibold leading-tight ${status ? 'text-green-700 bg-green-100' :'text-red-700 bg-red-100' } rounded-lg`}> {status ? 'Activo' : 'Inactivo' } </span>
     </td>
     <td className="px-4 py-3 text-sm border ">  
-         <button className='bg-yellow-500 rounded-lg mr-2 h-8'>
-        <PencilSquareIcon className='h-6 w-12 text-white cursor-pointer'/>
+
+         <button className='bg-yellow-500 rounded-lg mr-2 h-8' onClick={() => showUserModal() }>
+        <PencilSquareIcon className='h-6 w-12 text-white cursor-pointer' />
          </button>
          <button className='bg-red-500 rounded-lg h-8'>
         <TrashIcon className='h-6 w-12 text-white cursor-pointer'/>

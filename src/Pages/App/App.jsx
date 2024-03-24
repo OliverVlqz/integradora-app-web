@@ -12,7 +12,9 @@ import CheckoutSideMenu from '../../Components/CheckoutSideMenu'
 import Habitaciones from '../Habitaciones'
 import Servicios from '../Servicios'
 import UsuariosInfo from '../Admin/UsuariosInfo'
-import HabitacionesForm from '../Admin/HabitacionesInfo'
+import HabitacionesForm from '../Admin/HabitacionesForm'
+import UsuariosForm from '../Admin/UsuariosForm'
+import HabitacionesInfo from '../Admin/HabitacionesInfo'
 
 const AppRoutes = () => {
   let routes = useRoutes([
@@ -25,7 +27,9 @@ const AppRoutes = () => {
     {path:'/my-orders/last',element:<MyOrder/>},
     {path:'/my-orders/:id',element:<MyOrder/>},
     {path:'/admin/users',element:<UsuariosInfo/>},
-    {path:'/admin/habitaciones',element:<HabitacionesForm/>},
+    {path:'/admin/habitaciones',element:<HabitacionesInfo/>},
+    {path:'/admin/habitaciones-form',element:<HabitacionesForm/>},
+    {path:'/admin/users-form',element:<UsuariosForm/>},
     {path:'/sign-in',element:<SignIn/>},
     {path:'*',element:<NotFound/>}
 

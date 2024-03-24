@@ -42,10 +42,22 @@ const Navbar =() => {
                 </NavLink>
             </li>
             <li>
-                <NavLink to={'/admin/habitaciones'} className={({isActive}) => isActive ? activeStyle: undefined}>
+            <NavLink to={'/admin/habitaciones'} className={({isActive}) => isActive ? activeStyle: undefined}>
                     Habitaciones
                 </NavLink>
+
             </li>
+            <li>
+                <NavLink to={'/admin/habitaciones-form'} className={({isActive}) => isActive ? activeStyle: undefined}>
+                    Crear habitaciones
+                </NavLink>
+            </li>
+            <li>
+                <NavLink to={'/admin/users-form'} className={({isActive}) => isActive ? activeStyle: undefined}>
+                    Crear usuario
+                </NavLink>
+            </li>
+            
           
 
         </ul>
@@ -65,7 +77,7 @@ const Navbar =() => {
             </li>
             <li>
                 <NavLink to='/sign-in' className = {({isActive}) => isActive ? activeStyle : undefined}>
-                    Sign In
+                    Iniciar Sesión
                 </NavLink>
             </li>
             <li className="flex items-center gap-1" onClick={()=>{openCheckoutSideMenu()}}>
