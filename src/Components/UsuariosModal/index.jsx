@@ -4,7 +4,7 @@ import { ShoppingCartContext } from "../../Context";
 export default function UsuariosModal() {
   const context = useContext(ShoppingCartContext)
     const {nombre,  apellidoP,  apellidoM, correo, tipoEmpleado} = context.userToModify || {}
-        console.log(context.userToModify)
+        
         //
    
     
