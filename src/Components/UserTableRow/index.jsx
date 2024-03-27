@@ -1,14 +1,21 @@
 import  { useContext } from 'react'
 import { ShoppingCartContext } from '../../Context'
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid'
+import { useTabs } from '@material-tailwind/react'
 
 export default function UserTableRow(props) {
-    const{nombre, rol, status} = props
+    const{nombre, status} = props.props
+    const rol = props.props.role.nombre_role
+     
+      
+  
     const context = useContext(ShoppingCartContext)
-    const showUserModal = () => { 
+    const showUserModal = (usuarioMod) => { 
         context.openUserModal()
-        console.log('showUserModal')
-        console.log(context.isUserModalOpen)
+        context.setUserToModify(usuarioMod)
+
+
+       
     }
   return (
     <tr className="text-gray-700">
@@ -30,7 +37,7 @@ export default function UserTableRow(props) {
     </td>
     <td className="px-4 py-3 text-sm border ">  
 
-         <button className='bg-yellow-500 rounded-lg mr-2 h-8' onClick={() => showUserModal() }>
+         <button className='bg-yellow-500 rounded-lg mr-2 h-8' onClick={() => showUserModal(props.props) }>
         <PencilSquareIcon className='h-6 w-12 text-white cursor-pointer' />
          </button>
          <button className='bg-red-500 rounded-lg h-8'>

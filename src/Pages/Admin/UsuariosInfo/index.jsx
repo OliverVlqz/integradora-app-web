@@ -1,7 +1,13 @@
+import { useContext } from 'react'
 import Layout from '../../../Components/Layout'
 import UserTableRow from '../../../Components/UserTableRow'
 import UsuariosModal from '../../../Components/UsuariosModal'
+import { ShoppingCartContext } from '../../../Context'
+
+
 export default function UsuariosInfo() {
+  const context = useContext(ShoppingCartContext)
+  const {datosUsuarios} = context
   return (
 <Layout>
   <h1 className='text-lg font-bold '>Usuarios</h1>
@@ -18,11 +24,12 @@ export default function UsuariosInfo() {
           </tr>
         </thead>
         <tbody className="bg-white">
-        
-          <UserTableRow nombre='Sufyan' rol='Empleado' status={true}/>
-          <UserTableRow nombre='Sufyan' rol='Usuario' status={false}/>
+        {
+          datosUsuarios.map((usuario) => (
+          <UserTableRow key={usuario.id} props={usuario}/>
+          ))
+        }
 
-        
         </tbody>
       </table>
     </div>

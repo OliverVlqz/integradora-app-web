@@ -55,6 +55,47 @@ export const ShoppingCartProvider = ({children}) =>{
     //User To Modify
     const [userToModify, setUserToModify] = useState({})
 
+    const datosUsuarios=[{
+      "id_usuario": 1,
+      "nombre": "lizz",
+      "apellidoP": "jojo",
+      "apellidoM": "jaja",
+      "correo": "jksdk",
+      "contrasena": "123",
+      "status": true,
+      "role": {
+          "id_role": 1,
+          "nombre_role": "cliente"
+      } 
+    
+    }, {
+      "id_usuario": 2,
+      "nombre": "rola",
+      "apellidoP": "jojo",
+      "apellidoM": "jaja",
+      "correo": "jksdk",
+      "contrasena": "123",
+      "status": false,
+      "role": {
+          "id_role": 1,
+          "nombre_role": "gerente"
+      } 
+    },
+    {
+      "id_usuario": 3,
+      "nombre": "uwu",
+      "apellidoP": "jojo",
+      "apellidoM": "jaja",
+      "correo": "jksdk",
+      "contrasena": "123",
+      "status": true,
+      "role": {
+          "id_role": 1,
+          "nombre_role": "empleado"
+      } 
+    },
+    
+  ]
 
 
     return(
@@ -83,7 +124,8 @@ export const ShoppingCartProvider = ({children}) =>{
             openUserModal,
             closeUserModal,
             userToModify,
-            setUserToModify
+            setUserToModify,
+            datosUsuarios
             }}>
             {children}
         </ShoppingCartContext.Provider>

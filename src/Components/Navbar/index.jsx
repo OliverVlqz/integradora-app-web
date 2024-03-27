@@ -57,6 +57,11 @@ const Navbar =() => {
                     Crear usuario
                 </NavLink>
             </li>
+            <li>
+            <NavLink to={'/empleado/cobro'} className={({isActive}) => isActive ? activeStyle: undefined}>
+                    Cobrar
+                </NavLink>
+            </li>
             
           
 

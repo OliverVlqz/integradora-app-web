@@ -15,6 +15,8 @@ import UsuariosInfo from '../Admin/UsuariosInfo'
 import HabitacionesForm from '../Admin/HabitacionesForm'
 import UsuariosForm from '../Admin/UsuariosForm'
 import HabitacionesInfo from '../Admin/HabitacionesInfo'
+import Register from '../Register'
+import Cobro from '../Empleado/Cobro'
 
 const AppRoutes = () => {
   let routes = useRoutes([
@@ -30,7 +32,9 @@ const AppRoutes = () => {
     {path:'/admin/habitaciones',element:<HabitacionesInfo/>},
     {path:'/admin/habitaciones-form',element:<HabitacionesForm/>},
     {path:'/admin/users-form',element:<UsuariosForm/>},
+    {path:'/empleado/cobro',element:<Cobro/>},
     {path:'/sign-in',element:<SignIn/>},
+    {path:'/create-account',element:<Register/>},
     {path:'*',element:<NotFound/>}
 
   ])
