@@ -1,11 +1,12 @@
 import  { useContext } from 'react'
 import { ShoppingCartContext } from '../../Context'
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid'
-import { useTabs } from '@material-tailwind/react'
+
 
 export default function UserTableRow(props) {
+  console.log(props.props)  
     const{nombre, status} = props.props
-    const rol = props.props.role.nombre_role
+    const rol = props.props.role.nombre
      
       
   
