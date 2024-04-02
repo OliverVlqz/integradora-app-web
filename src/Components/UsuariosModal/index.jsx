@@ -4,15 +4,9 @@ import { ShoppingCartContext } from "../../Context";
 export default function UsuariosModal() {
   const context = useContext(ShoppingCartContext)
     const {nombre,  apellidoP,  apellidoM, correo, tipoEmpleado} = context.userToModify || {}
-        
-   
-    
-    
-
   return (
     <>
      
-      
         <div className={context.isUserModalOpen ? "flex" : "hidden"}>
           <div
             className={`justify-center items-center flex overflow-x-hidden overflow-y-hidden fixed inset-0 z-50 outline-none focus:outline-none`}
