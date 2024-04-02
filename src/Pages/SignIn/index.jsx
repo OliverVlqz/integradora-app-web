@@ -4,7 +4,7 @@ import { UserIcon, LockClosedIcon } from "@heroicons/react/24/solid";
 
 
 function SignIn() {
-    return (
+  return (
       <Layout >
         <div className="grid grid-cols-2">
         <div className="items-start">
@@ -12,7 +12,7 @@ function SignIn() {
         </div>
         <div className="justify-center items-center p-8">
           <div className="justify-center items-center">
-            <img src="../../../public/logo.png" alt="" className="h-32  ml-20"/>
+            <img src="/logo.png" alt="" className="h-32  ml-20"/>
           </div>
         <h1 className="text-green-700 text-4xl pb-10 text-center">Iniciar Sesion</h1>
         <form>

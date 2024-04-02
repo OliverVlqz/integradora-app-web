@@ -30,10 +30,10 @@ export const ShoppingCartProvider = ({children}) =>{
     
         
       },[])
-
+      // Get next api : http://localhost:8080/api/usuario 
+    
       const filteredItemsByTitle =(items, searchByTitle)=>{
         return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
-
       }
       useEffect(()=>{
         if(searchByTitle){

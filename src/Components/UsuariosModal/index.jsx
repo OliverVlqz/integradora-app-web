@@ -5,7 +5,6 @@ export default function UsuariosModal() {
   const context = useContext(ShoppingCartContext)
     const {nombre,  apellidoP,  apellidoM, correo, tipoEmpleado} = context.userToModify || {}
         
-        //
    
     
     
