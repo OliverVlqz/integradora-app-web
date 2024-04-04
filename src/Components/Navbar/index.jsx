@@ -25,11 +25,7 @@ const Navbar =() => {
                     Inicio
                 </NavLink>
             </li>
-            <li>
-                <NavLink to='/habitaciones'className = {({isActive}) => isActive ? activeStyle : undefined}>
-                    Habitaciones
-                </NavLink>
-            </li>
+
            
             <li>
                 <NavLink to='/servicios'className = {({isActive}) => isActive ? activeStyle : undefined}>

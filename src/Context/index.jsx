@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import axios from 'axios'
 import { createContext, useState } from 'react'
 export const ShoppingCartContext = createContext()
 export const ShoppingCartProvider = ({children}) =>{
@@ -44,7 +43,7 @@ export const ShoppingCartProvider = ({children}) =>{
 
     // Checkout Side Menu Open/Close
      //Produc detail Show product
-     const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
+     const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)  
      //Product detail open/close
      const openCheckoutSideMenu =() => setIsCheckoutSideMenuOpen(true)
      const closeCheckoutSideMenu =() => setIsCheckoutSideMenuOpen(false)
@@ -56,50 +55,16 @@ export const ShoppingCartProvider = ({children}) =>{
     //User To Modify
     const [userToModify, setUserToModify] = useState({})
 
-    //Datos de Usuarios
-    const datosUsuarios=[{
-      "id_usuario": 1,
-      "nombre": "lizz",
-      "apellidoP": "jojo",
-      "apellidoM": "jaja",
-      "correo": "jksdk",
-      "contrasena": "123",
-      "status": true,
-      "role": {
-          "id_role": 1,
-          "nombre_role": "cliente"
-      } 
+    //Loading modal
+    const [showLoading, setShowLoading] = useState  (false)
+    //Loading modal open/close
+    const openLoadingModal =() => setShowLoading(true)
+    const closeLoadingModal =() => setShowLoading(false)
+    //Mensaje que se muestra en el loading modal
+    const [mensaje, setMensaje] = useState('Cargando')
     
-    }, {
-      "id_usuario": 2,
-      "nombre": "rola",
-      "apellidoP": "jojo",
-      "apellidoM": "jaja",
-      "correo": "jksdk",
-      "contrasena": "123",
-      "status": false,
-      "role": {
-          "id_role": 1,
-          "nombre_role": "gerente"
-      } 
-    },
-    {
-      "id_usuario": 3,
-      "nombre": "uwu",
-      "apellidoP": "jojo",
-      "apellidoM": "jaja",
-      "correo": "jksdk",
-      "contrasena": "123",
-      "status": true,
-      "role": {
-          "id_role": 1,
-          "nombre_role": "empleado"
-      } 
-    },
-    
-  ]
 
-
+ 
     return(
         <ShoppingCartContext.Provider value={{
             count, 
@@ -127,7 +92,11 @@ export const ShoppingCartProvider = ({children}) =>{
             closeUserModal,
             userToModify,
             setUserToModify,
-            datosUsuarios
+            showLoading,
+            openLoadingModal,
+            closeLoadingModal,
+            mensaje,
+            setMensaje
             }}>
             {children}
         </ShoppingCartContext.Provider>
