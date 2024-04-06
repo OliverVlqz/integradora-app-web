@@ -15,7 +15,6 @@ const Navbar =() => {
         <ul className='flex items-center gap-3 text-slate-200 font-medium'>
             <li className='font-semibold text-lg'>
                 <NavLink to='/'>
-                    
                 <img className="h-7" src="../../../public/logosinfondo.png" alt="" />
                 </NavLink>
 

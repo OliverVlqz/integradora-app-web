@@ -27,9 +27,8 @@ export const ShoppingCartProvider = ({children}) =>{
         fetch('https://api.escuelajs.co/api/v1/products')
         .then(response => response.json())
         .then (data=> setItems(data))
-    
-        
-      },[])
+      },[]) 
+      console.log(items)
       // Get next api : http://localhost:8080/api/usuario 
     
       const filteredItemsByTitle =(items, searchByTitle)=>{
