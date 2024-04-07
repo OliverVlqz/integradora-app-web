@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { createContext, useState } from 'react'
+
 export const ShoppingCartContext = createContext()
 export const ShoppingCartProvider = ({children}) =>{
     //Shopping cart count
@@ -21,18 +22,35 @@ export const ShoppingCartProvider = ({children}) =>{
     const [searchByTitle, setSearchByTitle] = useState('')
     //Filtered Items
     const [filteredItems, setFilteredItems] = useState([])
-
     
-    useEffect(()=>{
-        fetch('https://api.escuelajs.co/api/v1/products')
-        .then(response => response.json())
-        .then (data=> setItems(data))
-      },[]) 
-      console.log(items)
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const actualUser = JSON.parse(localStorage.getItem('actualUser'));
+          const token = actualUser.token;
+          const config = {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          };
+         fetch('http://localhost:8080/api/elemento/', config).
+          then( response=> response.json()).
+          then(data=>{
+            //dentro de data necesito el array de elementos que esta dentro de data 
+            setItems(data.data)
+          });
+
+        } catch (error) {
+          console.error('Error al obtener los elementos:', error);
+        }
+      };
+  
+      fetchData();
+    }, []);
       // Get next api : http://localhost:8080/api/usuario 
     
       const filteredItemsByTitle =(items, searchByTitle)=>{
-        return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+        return items?.filter(item => item.nombre_producto.toLowerCase().includes(searchByTitle.toLowerCase()))
       }
       useEffect(()=>{
         if(searchByTitle){
@@ -61,6 +79,18 @@ export const ShoppingCartProvider = ({children}) =>{
     const closeLoadingModal =() => setShowLoading(false)
     //Mensaje que se muestra en el loading modal
     const [mensaje, setMensaje] = useState('Cargando')
+
+    //HabitacionesModal Open/Close
+    const [isHabitacionesModalOpen, setIsHabitacionesModalOpen] = useState(false)
+    const openHabitacionesModal = () => setIsHabitacionesModalOpen(true)
+    const closeHabitacionesModal = () => setIsHabitacionesModalOpen(false)
+    //Habitaciones To Modify
+    const [habitacionesToModify, setHabitacionesToModify] = useState({})
+
+    //PagoModal Open/Close
+    const [isPagoModalOpen, setIsPagoModalOpen] = useState(false)
+    const openPagoModal = () => setIsPagoModalOpen(true)
+    const closePagoModal = () => setIsPagoModalOpen(false)
     
 
  
@@ -95,7 +125,15 @@ export const ShoppingCartProvider = ({children}) =>{
             openLoadingModal,
             closeLoadingModal,
             mensaje,
-            setMensaje
+            setMensaje,
+            isHabitacionesModalOpen,
+            openHabitacionesModal,
+            closeHabitacionesModal,
+            habitacionesToModify,
+            setHabitacionesToModify,
+            isPagoModalOpen,
+            openPagoModal,
+            closePagoModal
             }}>
             {children}
         </ShoppingCartContext.Provider>

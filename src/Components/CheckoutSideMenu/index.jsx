@@ -26,7 +26,8 @@ const CheckoutSideMenu=()=>{
         context.setCount(0)
         context.closeCheckoutSideMenu()
     }
-
+    console.log( context.cartProducts)
+    context.cartProducts.map(product => console.log(product.nombre_producto))
     return(
         <aside className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} flex-col fixed top-20 right-0 
         border bg-white border-black
@@ -42,11 +43,11 @@ const CheckoutSideMenu=()=>{
             {
                 context.cartProducts.map(product =>(
                     <OrderCard 
-                    key={product.id}
-                    id={product.id}
-                    title ={product.title}
-                    imageUrl="https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                    price={product.price}
+                    key={product.id_producto}
+                    id={product.id_producto}
+                    title ={product.nombre_producto}
+                    imageUrl={product.imagen_elemento}
+                    price={product.precio}
                     handleDelete={handleDelete}
                     />
 
@@ -59,7 +60,7 @@ const CheckoutSideMenu=()=>{
                     <span className='font-medium text-2xl'>${totalPrice(context.cartProducts)}</span>
                 </p>
                 <Link to='/my-orders/last'>
-                <button className='w-full bg-black py-3 text-white rounded-lg' onClick={()=> handleCheckout()} >Checkout</button>
+                <button className='w-full bg-black py-3 text-white rounded-lg' onClick={()=> handleCheckout()} >Comprar</button>
                 
                 </Link>
 

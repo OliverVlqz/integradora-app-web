@@ -11,7 +11,7 @@ function MyOrder() {
   const currentPath = window.location.pathname
   let index = currentPath.substring(currentPath.lastIndexOf('/') + 1)
   if(index ==='last') {index = context.order?.length-1}
-
+console.log()
     return (
       <Layout>  
         <div className="flex w-80 items-center justify-center relative mb-6">
@@ -26,11 +26,11 @@ function MyOrder() {
             {
                 context.order?.[index]?.products.map(product =>(
                     <OrderCard 
-                    key={product.id}
-                    id={product.id}
-                    title ={product.title}
-                    imageUrl="https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                    price={product.price}
+                    key={product.id_producto}
+                    id={product.id_producto}
+                    title ={product.nombre_producto}
+                    imageUrl={product.imagen_elemento}
+                    price={product.precio}
                     />
 
                     ))

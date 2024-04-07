@@ -17,6 +17,7 @@ import UsuariosForm from '../Admin/UsuariosForm'
 import HabitacionesInfo from '../Admin/HabitacionesInfo'
 import Register from '../Register'
 import Cobro from '../Empleado/Cobro'
+import PagoModal from '../../Components/PagoModal'
 
 const AppRoutes = () => {
   let routes = useRoutes([
@@ -49,6 +50,7 @@ const App = () => {
         <AppRoutes/>
         <Navbar/>
         <CheckoutSideMenu/>
+        <PagoModal/>
       </BrowserRouter>
     </ShoppingCartProvider>
     )}

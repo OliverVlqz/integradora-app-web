@@ -2,7 +2,10 @@ import { TrashIcon } from "@heroicons/react/20/solid"
 import { PencilSquareIcon } from "@heroicons/react/24/solid"
 
 export default function HabitacionesTableRow(props) {
-    const{nombre, personas, tipo, status} = props
+  console.log(props.props)
+    const{ num_habitacion,  capacidad, descripcion} = props.props
+    const status=true
+
     return (
       <tr className="text-gray-700">
       <td className="px-4 py-3 border">
@@ -12,12 +15,12 @@ export default function HabitacionesTableRow(props) {
             <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
           </div>
           <div>
-            <p className="font-semibold text-black">{nombre}</p>
-            <p className="text-xs text-gray-600">{personas} personas</p>
+            <p className="font-semibold text-black">{num_habitacion}</p>
+            <p className="text-xs text-gray-600">{capacidad} personas</p>
           </div>
         </div>
       </td>
-      <td className="px-4 py-3 text-ms font-semibold border">{tipo}</td>
+      <td className="px-4 py-3 text-ms font-semibold border">{descripcion}</td>
       <td className="px-4 py-3 text-xs border">
         <span className={`px-2 py-1 font-semibold leading-tight ${status ? 'text-green-700 bg-green-100' :'text-red-700 bg-red-100' } rounded-lg`}> {status ? 'Activo' : 'Inactivo' } </span>
       </td>

@@ -1,4 +1,5 @@
-export default function CreditCard() {
+export default function CreditCard({ nombre, numero, mes, año, cvv }) {
+
   return (
     <div className="bg-white  flex">
         <div className="space-y-16">
@@ -10,38 +11,38 @@ export default function CreditCard() {
                     <div className="flex justify-between">
                         <div className="">
                             <p className="font-light">
-                                Name
+                                Nombre
                             </p>
                             <p className="font-medium tracking-widest">
-                                Oliver Martinez
+                                {nombre}
                             </p>
                         </div>
                         <img className="w-14 h-14" src="https://i.imgur.com/bbPHJVe.png"/>
                     </div>
                     <div className="pt-1">
                         <p className="font-light">
-                            Card Number
+                            Numero de tarjeta
                         </p>
                         <p className="font-medium tracking-more-wider">
-                            4642  3489  9867  7632
+                            {numero}
                         </p>
                     </div>
                     <div className="pt-6 pr-6">
                         <div className="flex justify-between">
                             <div className="">
                                 <p className="font-light text-xs">
-                                    Month
+                                    Mes
                                 </p>
                                 <p className="font-medium tracking-wider text-sm">
-                                    11
+                                    {mes}
                                 </p>
                             </div>
                             <div className="">
                                 <p className="font-light text-xs ">
-                                    Year
+                                    Año
                                 </p>
                                 <p className="font-medium tracking-wider text-sm">
-                                    25
+                                    {año}
                                 </p>
                             </div>
     
@@ -49,8 +50,10 @@ export default function CreditCard() {
                                 <p className="font-light text-xs">
                                     CVV
                                 </p>
-                                <p className="font-bold tracking-more-wider text-sm">
-                                    ···
+                                {// Haz que este campo se muestre como si fuera contraseña
+                                }
+                                <p className="font-bold tracking-more-wider text-sm "  >
+                                    {cvv}
                                 </p>
                             </div>
                         </div>

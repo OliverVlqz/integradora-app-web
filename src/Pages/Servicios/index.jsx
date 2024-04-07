@@ -1,4 +1,5 @@
 import { useContext } from "react"
+
 import Card from "../../Components/Card"
 import Layout from "../../Components/Layout"
 import ProductDetail from "../../Components/ProductDetail"
@@ -11,7 +12,8 @@ function Servicios() {
     if(context.searchByTitle?.length>0){
       if(context.filteredItems?.length>0){
         return(context.filteredItems?.map(item=>(
-          <Card key={item.id} data={item}/>
+          
+          <Card key={item.id_producto} data={item}/>
         )))
       }else{
         return(
@@ -21,7 +23,7 @@ function Servicios() {
       
     } else{
       return(context.items?.map(item=>(
-        <Card key={item.id} data={item}/>
+        <Card key={item.id_producto} data={item}/>
       )))
     }
   }
@@ -29,7 +31,7 @@ function Servicios() {
    
     <Layout>
       <div className="flex w-80 items-center justify-center relative mb-4">
-          <h1 className="font-medium text-x l">Miscelaneos</h1>
+          <h1 className="font-medium text-x l">Servicios</h1>
       </div>
       <input className="rounded-lg border-black border w-80 p-4 mb-4 focus:outline-none"
       onChange={(event)=>{ context.setSearchByTitle(event.target.value)}} 
