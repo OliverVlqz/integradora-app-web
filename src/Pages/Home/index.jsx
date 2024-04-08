@@ -7,6 +7,8 @@ import HabitacionesCard from "../../Components/HabitacionesCard";
 export default function Index() {
   const [habitaciones, setHabitaciones] = useState([]);
   const [selectedDate, setSelectedDate] = useState(getTodayDate());
+  const [endDate, setEndDate] = useState(getTodayDate());
+  const [minEndDate, setMinEndDate] = useState(getTodayDate());
 
   function getTodayDate() {
     const today = new Date();
@@ -15,8 +17,21 @@ export default function Index() {
     let day = today.getDate();
     month = month < 10 ? `0${month}` : month;
     day = day < 10 ? `0${day}` : day;
-    const todayString = `${year}-${month}-${day}`;
-    return todayString;
+    return `${year}-${month}-${day}`;
+  }
+
+  function handleStartDateChange(event) {
+    const newStartDate = event.target.value;
+    setSelectedDate(newStartDate);
+
+    const startDate = new Date(newStartDate);
+    startDate.setDate(startDate.getDate() + 7); // Incrementar 7 días para la fecha máxima de salida
+    const maxEndDate = startDate.toISOString().split('T')[0]; // Convertir a formato yyyy-mm-dd
+    setMinEndDate(maxEndDate); // Establecer la fecha mínima para el input de fecha de salida
+  }
+
+  function handleEndDateChange(event) {
+    setEndDate(event.target.value);
   }
 
   useEffect(() => {
@@ -40,16 +55,29 @@ export default function Index() {
     fetchHabitaciones();
   }, []);
 
-  console.log(habitaciones);
-
   return (
     <Layout>
       <div className="min-w-max">
         <img className="h-96 bg-local rounded-md" src="../../../public/inicioalberca.webp" alt="" />
-        <div className="bg-[#e8eee5] h-14 flex justify-center content-center rounded-lg w-[40rem] m-auto">
-          <form action="" className="">
-            <input type="date" value={selectedDate} className="bg-transparent m-3 " />
-            <input type="date" value={selectedDate} className="bg-transparent m-3" />
+        <div className="bg-[#dff8d2] h-14 flex justify-center content-center rounded-lg w-[40rem] m-auto">
+          <form className="">
+            <div>
+              
+            </div>
+            <input
+              type="date"
+              value={selectedDate}
+              className="bg-transparent m-3"
+              min={getTodayDate()}
+              onChange={handleStartDateChange}
+            />
+            <input
+              type="date"
+              value={endDate}
+              className="bg-transparent m-3"
+              max={minEndDate}
+              onChange={handleEndDateChange}
+            />
             <button className="rounded-lg bg-lime-700 h-8 w-44 m-3 text-slate-100">Ver disponibilidad</button>
           </form>
         </div>
@@ -61,3 +89,4 @@ export default function Index() {
     </Layout>
   );
 }
+  

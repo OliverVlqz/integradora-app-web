@@ -1,10 +1,15 @@
+import { useContext } from "react"
+import { ShoppingCartContext } from "../../Context"
 
 
 export default function HabitacionesCard(props) {
-    console.log(props.props)
-    console.log(props.props.imagen_hab)
     const {  capacidad, cant_camas,  imagen_hab}= props.props
     const {nombrehabitacion}=props.props.tipoHabitacion
+    const context = useContext(ShoppingCartContext)
+    
+
+
+
   return (
         <figure className="bg-gray-300  flex w-1/3 h-44 justify-center items-center rounded-lg gap-4 m-3">
         <div className="m-2 h-3/4">

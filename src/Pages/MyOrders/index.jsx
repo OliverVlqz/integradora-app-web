@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 
 function MyOrders() {
   const context = useContext(ShoppingCartContext)
+  console.log('context', context.order)
     return (
       <Layout>
         <div className="flex w-80 items-center justify-center relative mb-4">
@@ -16,6 +17,7 @@ function MyOrders() {
           context.order.map((order, index)=>(
             <Link key={index} to={`/my-orders/${index}`}>
             <OrdersCard
+              date={order.date}
              totalPrice={order.totalPrice} 
              totalProducts={order.totalProducts}
              />

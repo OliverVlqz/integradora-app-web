@@ -52,11 +52,7 @@ const Navbar =() => {
                     Crear usuario
                 </NavLink>
             </li>
-            <li>
-            <NavLink to={'/empleado/cobro'} className={({isActive}) => isActive ? activeStyle: undefined}>
-                    Cobrar
-                </NavLink>
-            </li>
+            
             
           
 
@@ -67,14 +63,10 @@ const Navbar =() => {
             </li>
             <li>
                 <NavLink to='/my-orders' className = {({isActive}) => isActive ? activeStyle : undefined}>
-                    My Orders
+                    Mis Ordenes
                 </NavLink>
             </li>
-            <li>
-                <NavLink to='/my-account' className = {({isActive}) => isActive ? activeStyle : undefined}>
-                    My Account
-                </NavLink>
-            </li>
+          
             <li>
                 <NavLink to='/sign-in' className = {({isActive}) => isActive ? activeStyle : undefined}>
                     Iniciar Sesión
