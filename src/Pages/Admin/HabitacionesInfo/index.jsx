@@ -29,13 +29,13 @@ export default function HabitacionesInfo() {
           setDatosHabitaciones(response.data.data);
         }
       } catch (error) {
-        console.error('Error al obtener datos de usuarios:', error);
+        console.error('Error al obtener datos de habitacion:', error);
       }
     };
 
     fetchData();
   }, []);
-console.log(datosHabitaciones)
+
 
   return (
     <Layout>

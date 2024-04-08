@@ -2,16 +2,15 @@ import { TrashIcon } from "@heroicons/react/20/solid"
 import { PencilSquareIcon } from "@heroicons/react/24/solid"
 
 export default function HabitacionesTableRow(props) {
-  console.log(props.props)
-    const{ num_habitacion,  capacidad, descripcion} = props.props
-    const status=true
+    const{ num_habitacion,  capacidad, descripcion, estatus,  imagen_hab} = props.props
+  
 
     return (
       <tr className="text-gray-700">
       <td className="px-4 py-3 border">
         <div className="flex items-center text-sm">
           <div className="relative w-8 h-8 mr-3 rounded-full md:block">
-            <img className="object-cover w-full h-full rounded-full" src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="" loading="lazy" />
+            <img className="object-cover w-full h-full rounded-full" src={imagen_hab} alt="" loading="lazy" />
             <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
           </div>
           <div>
@@ -22,7 +21,7 @@ export default function HabitacionesTableRow(props) {
       </td>
       <td className="px-4 py-3 text-ms font-semibold border">{descripcion}</td>
       <td className="px-4 py-3 text-xs border">
-        <span className={`px-2 py-1 font-semibold leading-tight ${status ? 'text-green-700 bg-green-100' :'text-red-700 bg-red-100' } rounded-lg`}> {status ? 'Activo' : 'Inactivo' } </span>
+        <span className={`px-2 py-1 font-semibold leading-tight ${estatus ? 'text-green-700 bg-green-100' :'text-red-700 bg-red-100' } rounded-lg`}> {estatus ? 'Activo' : 'Inactivo' } </span>
       </td>
       <td className="px-4 py-3 text-sm border ">  
            <button className='bg-yellow-500 rounded-lg mr-2 h-8'>

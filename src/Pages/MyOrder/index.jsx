@@ -31,6 +31,8 @@ console.log()
                     title ={product.nombre_producto}
                     imageUrl={product.imagen_elemento}
                     price={product.precio}
+                    
+                    
                     />
 
                     ))

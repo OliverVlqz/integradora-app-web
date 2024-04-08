@@ -7,11 +7,11 @@ import OrderCard from '../OrderCard'
 import {totalPrice} from '../../utils'
 const CheckoutSideMenu=()=>{
     const context = useContext(ShoppingCartContext)
-    console.log('Cart', context.cartProducts)
+
     
     const handleDelete = (id) =>{
         context.setCount(context.count - 1)
-        const filteredProducts = context.cartProducts.filter(product => product.id != id)
+        const filteredProducts = context.cartProducts.filter(product => product.id_producto != id)
         context.setCartProducts(filteredProducts)
     }
     const handleCheckout = () =>{
@@ -26,8 +26,7 @@ const CheckoutSideMenu=()=>{
         context.setCount(0)
         context.closeCheckoutSideMenu()
     }
-    console.log( context.cartProducts)
-    context.cartProducts.map(product => console.log(product.nombre_producto))
+  
     return(
         <aside className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} flex-col fixed top-20 right-0 
         border bg-white border-black

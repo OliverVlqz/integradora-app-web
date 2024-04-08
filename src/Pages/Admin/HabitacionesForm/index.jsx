@@ -72,6 +72,7 @@ export default function HabitacionesForm() {
       // Realizar la solicitud POST con el token en el encabezado
       const response = await axios.post('http://localhost:8080/api/habitacion/crear/', dataToSend, config);
       console.log('Respuesta:', response.data);
+      console.log('Habitacion se creo correctamente')
     } catch (error) {
       console.error('Error al enviar la solicitud:', error);
     }

@@ -84,7 +84,7 @@ export default function UsuariosModal() {
         {
             //coloca el tipo de empleado que tiene el usuario en el select
         }
-        <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+        <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state" >
         <option defaultValue={tipoEmpleado === "Gerente" ? "selected": ""}>Gerente</option>
         <option defaultValue={tipoEmpleado === "Recepcionista" ? "selected" : ""}>Recepcionista</option>
         <option defaultChecked={tipoEmpleado ==="Otro" ? "selected": ""}>Otro</option>

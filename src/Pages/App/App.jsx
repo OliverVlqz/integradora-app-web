@@ -34,7 +34,7 @@ const AppRoutes = () => {
     {path:'/admin/habitaciones-form',element:<HabitacionesForm/>},
     {path:'/admin/users-form',element:<UsuariosForm/>},
     {path:'/empleado/cobro',element:<Cobro/>},
-    {path:'/sign-in',element:<SignIn/>},
+    {path:'/sign-in', element:<SignIn/> },
     {path:'/create-account',element:<Register/>},
     {path:'*',element:<NotFound/>}
 
