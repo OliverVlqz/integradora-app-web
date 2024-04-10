@@ -47,7 +47,57 @@ export const ShoppingCartProvider = ({children}) =>{
   
       fetchData();
     }, []);
-      // Get next api : http://localhost:8080/api/usuario 
+      // Fetch a la API para obtener el historial del usuario
+      useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const actualUser = JSON.parse(localStorage.getItem('actualUser'));
+                const idUsuario = actualUser.usuario.id;
+                const token = actualUser.token;
+                const config = {
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                };
+                console.log('idUsuario', idUsuario);
+
+                const response = await fetch(`http://localhost:8080/api/reserva/usuario/${idUsuario}`, config);
+                if (!response.ok) throw new Error('Respuesta de red no fue ok');
+
+                const data = await response.json();
+                // Aquí transformas los datos obtenidos al formato que necesitas, si es necesario
+                const orderData = transformOrderData(data);
+                setOrder(orderData);
+            } catch (error) {
+                console.error('Error al obtener las reservas:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+    const transformOrderData = (apiResponse) => {
+      // Suponiendo que apiResponse.data contiene el array de reservas
+      // y necesitamos ajustar cada reserva a la estructura deseada para `order`
+      return apiResponse.data.map(reserva => ({
+          date: reserva.fecha_compra,
+          products: reserva.elementos.map(elemento => ({
+              id_producto: elemento.id_producto,
+              nombre_producto: elemento.nombre_producto,
+              precio: elemento.precio,
+              descripcion: elemento.descripcion || '', // Asegurar que siempre haya un string
+              imagen_elemento: elemento.imagen_elemento || '', // Asegurar que siempre haya un string
+              paquetes: elemento.paquetes || [], // Asegurar que siempre haya un array
+              categoria: {
+                  id_categoria: elemento.categoria.id_categoria,
+                  nombrecategoria: elemento.categoria.nombrecategoria
+              }
+          })),
+          totalProducts: reserva.total_productos,
+          totalPrice: reserva.total // Asumiendo que este es el total a pagar de la reserva
+      }));
+  };
+  console.log(order)
     
       const filteredItemsByTitle =(items, searchByTitle)=>{
         return items?.filter(item => item.nombre_producto.toLowerCase().includes(searchByTitle.toLowerCase()))
@@ -93,7 +143,7 @@ export const ShoppingCartProvider = ({children}) =>{
     const closePagoModal = () => setIsPagoModalOpen(false)
     
 
- 
+    console.log(order)
     return(
         <ShoppingCartContext.Provider value={{
             count, 

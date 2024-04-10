@@ -2,7 +2,6 @@ import { XMarkIcon } from "@heroicons/react/24/solid"
 
 
 const OrderCard= props =>{
-    console.log('props', props)
     const {id, title, imageUrl, price, handleDelete} =props
     let renderXMarkIcon
     if(handleDelete){

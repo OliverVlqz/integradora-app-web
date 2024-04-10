@@ -12,7 +12,9 @@ export default function HabitacionesForm() {
     imagen_hab: '', // La imagen se almacenará en base64 aquí
     tipoHabitacion: {
       id_tipohab: '' // Cambiado para coincidir con el formato JSON proporcionado
-    }
+    },
+    estatus:true
+
   });
 
   const handleChange = (e) => {
@@ -85,11 +87,11 @@ export default function HabitacionesForm() {
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
-              Nombre
+              Numero de habitacion
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              type="text"
+              type="number"
               placeholder="Habitacion"
               name="num_habitacion"
               value={habitacionData.num_habitacion}
@@ -148,7 +150,7 @@ export default function HabitacionesForm() {
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              type="text"
+              type="number"
               placeholder="2"
               name="cant_camas"
               value={habitacionData.cant_camas}
