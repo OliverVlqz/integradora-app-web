@@ -22,6 +22,8 @@ export const ShoppingCartProvider = ({children}) =>{
     const [searchByTitle, setSearchByTitle] = useState('')
     //Filtered Items
     const [filteredItems, setFilteredItems] = useState([])
+    //Room to Buy
+    const [roomToBuy, setRoomToBuy] = useState({})
     
     useEffect(() => {
       const fetchData = async () => {
@@ -60,7 +62,7 @@ export const ShoppingCartProvider = ({children}) =>{
                         Authorization: `Bearer ${token}`
                     }
                 };
-                console.log('idUsuario', idUsuario);
+                
 
                 const response = await fetch(`http://localhost:8080/api/reserva/usuario/${idUsuario}`, config);
                 if (!response.ok) throw new Error('Respuesta de red no fue ok');
@@ -97,8 +99,7 @@ export const ShoppingCartProvider = ({children}) =>{
           totalPrice: reserva.total // Asumiendo que este es el total a pagar de la reserva
       }));
   };
-  console.log(order)
-    
+  
       const filteredItemsByTitle =(items, searchByTitle)=>{
         return items?.filter(item => item.nombre_producto.toLowerCase().includes(searchByTitle.toLowerCase()))
       }
@@ -138,12 +139,18 @@ export const ShoppingCartProvider = ({children}) =>{
     const [habitacionesToModify, setHabitacionesToModify] = useState({})
 
     //PagoModal Open/Close
-    const [isPagoModalOpen, setIsPagoModalOpen] = useState(false)
-    const openPagoModal = () => setIsPagoModalOpen(true)
-    const closePagoModal = () => setIsPagoModalOpen(false)
-    
+    const [isPagoHabitacionModalOpen, setIsPagoHabitacionModalOpen] = useState(false)
+    const openPagoHabitacionModal = (roomDetails) => {
+      setRoomToBuy(roomDetails)
+        setIsPagoHabitacionModalOpen(true)
+    }
+    const closePagoHabitacionModal = () => {
+      setRoomToBuy({})
+      setIsPagoHabitacionModalOpen(false)
 
-    console.log(order)
+    }
+   
+
     return(
         <ShoppingCartContext.Provider value={{
             count, 
@@ -181,9 +188,11 @@ export const ShoppingCartProvider = ({children}) =>{
             closeHabitacionesModal,
             habitacionesToModify,
             setHabitacionesToModify,
-            isPagoModalOpen,
-            openPagoModal,
-            closePagoModal
+            isPagoModalOpen: isPagoHabitacionModalOpen,
+            openPagoHabitacionModal,
+            closePagoHabitacionModal,
+            roomToBuy,
+            setRoomToBuy
             }}>
             {children}
         </ShoppingCartContext.Provider>

@@ -57,8 +57,6 @@ const CheckoutSideMenu=()=>{
                 },
                 body: JSON.stringify(requestBody)
             });
-            console.log(token)
-    
             if (!response.ok) {
                 throw new Error('La solicitud de reserva falló');
             }

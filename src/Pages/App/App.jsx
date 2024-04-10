@@ -17,11 +17,12 @@ import UsuariosForm from '../Admin/UsuariosForm'
 import HabitacionesInfo from '../Admin/HabitacionesInfo'
 import Register from '../Register'
 import Cobro from '../Empleado/Cobro'
-import PagoModal from '../../Components/PagoModal'
+import PagoModalHabitacion from '../../Components/PagoModalHabitacion'
+
 
 const AppRoutes = () => {
   let routes = useRoutes([
-    {path:'/',element:<Home/>},
+    {path:'/',element:<SignIn/>},
     {path:'/habitaciones',element:<Habitaciones/>},
     {path:'/servicios',element:<Servicios/>},
     {path:'/my-account',element:<MyAccount/>},
@@ -34,7 +35,7 @@ const AppRoutes = () => {
     {path:'/admin/habitaciones-form',element:<HabitacionesForm/>},
     {path:'/admin/users-form',element:<UsuariosForm/>},
     {path:'/empleado/cobro',element:<Cobro/>},
-    {path:'/sign-in', element:<SignIn/> },
+    {path:'/home', element:<Home/> },
     {path:'/create-account',element:<Register/>},
     {path:'*',element:<NotFound/>}
 
@@ -50,8 +51,8 @@ const App = () => {
         <AppRoutes/>
         <Navbar/>
         <CheckoutSideMenu/>
-        <PagoModal/>
       </BrowserRouter>
+      <PagoModalHabitacion/>
     </ShoppingCartProvider>
     )}
 

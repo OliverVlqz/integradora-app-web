@@ -2,13 +2,105 @@ import { useContext, useState } from "react";
 import { ShoppingCartContext } from "../../Context";
 import CreditCard from "../CreditCard";
 
-export default function PagoModal() {
-    const context = useContext(ShoppingCartContext)
+export default function PagoModalHabitacion() {
+    const context = useContext(ShoppingCartContext);
+    const datosHabitacion = context.roomToBuy
     const [nombre, setNombre] = useState('');
     const [numero, setNumero] = useState('');
     const [mes, setMes] = useState('');
     const [año, setAño] = useState('');
     const [cvv, setCvv] = useState('');
+    const [error, setError] = useState('');
+   
+
+    const validarFormulario = () => {
+        // Limpiar el error previo
+        setError('');
+
+        // Validaciones básicas
+        if (!nombre.trim()) {
+            setError('El nombre en la tarjeta es requerido');
+            return false;
+        }
+        if (!numero.trim() || numero.length !== 16 || !numero.match(/^[0-9]+$/)) {
+            setError('El número de tarjeta debe contener 16 dígitos numéricos');
+            return false;
+        }
+        if (!mes.trim() || mes < 1 || mes > 12) {
+            setError('El mes de expiración no es válido');
+            return false;
+        }
+        if (!año.trim() || año.length !== 2 || !año.match(/^[0-9]+$/)) {
+            setError('El año de expiración debe ser los últimos 2 dígitos');
+            return false;
+        }
+        if (!cvv.trim() || cvv.length !== 3 || !cvv.match(/^[0-9]+$/)) {
+            setError('El CVV debe contener 3 dígitos');
+            return false;
+        }
+
+        // Si todas las validaciones pasan
+        return true;
+    };
+
+    const realizarPago = () => {
+      if(validarFormulario()) {
+          console.log('Realizando pago...');
+  
+          // Extracción del usuario y token del localStorage
+          const actualUser = JSON.parse(localStorage.getItem('actualUser'));
+          const token = actualUser?.token;
+          const usuarioId = actualUser?.usuario?.id;
+  
+          // Preparación de los datos para la reserva basado en datosHabitacion y otros datos necesarios
+          const data = {
+              fecha_entrada: datosHabitacion.selectedDate,
+              fecha_salida: datosHabitacion.endDate,
+              total: datosHabitacion.props.precio, // Asumiendo que este es el total por ahora
+              total_productos: 1, // Asumir por ahora, ajustar según tu lógica de negocio
+              fecha_compra: new Date().toISOString(), // Fecha actual en formato ISO
+              usuarioId: usuarioId,
+              elementoIds: [], // Asumir vacío por ahora, ajustar según tu lógica de negocio
+              habitacionIds: [datosHabitacion.props.id_habitacion]
+          };
+  
+          realizarPost(data, token);
+  
+          // Limpiar los campos del formulario después del pago
+          setNombre('');
+          setNumero('');
+          setMes('');
+          setAño('');
+          setCvv('');
+          context.closePagoModal();
+      }
+  };
+  const realizarPost = async (data, token) => {
+    const url = 'http://localhost:8080/api/reserva/crear/';
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Asegúrate de incluir el token en la cabecera de autorización
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al realizar la reserva');
+        }
+
+        const responseData = await response.json();
+        console.log('Reserva realizada con éxito:', responseData);
+        // Aquí puedes manejar la respuesta exitosa, como mostrar un mensaje al usuario
+    } catch (error) {
+        console.error('Error en la petición POST:', error);
+        // Manejar el error, como mostrar un mensaje al usuario
+    }
+};
+
   return (
     <>
      
@@ -108,6 +200,7 @@ export default function PagoModal() {
     </div>
   
   </form>
+  {error && <p className="text-red-500 text-xs italic">{error}</p>}
   </div>
    </section>
   
@@ -119,14 +212,14 @@ export default function PagoModal() {
                   <button
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => context.closePagoModal()}
+                    onClick={() => context.closePagoHabitacionModal()}
                   >
                     Cerrar
                   </button>
                   <button
                     className="bg-lime-500 text-white hover:bg-lime-800 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() =>  context.closePagoModal()}
+                    onClick={realizarPago}
                   >
                     Realizar pago
                   </button>

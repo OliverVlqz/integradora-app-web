@@ -20,6 +20,11 @@ export default function Index() {
     return `${year}-${month}-${day}`;
   }
 
+  // Función para convertir fecha al formato deseado con hora fija
+  function formatDateWithTime(date) {
+    return `${date}T14:00:00`;
+  }
+
   function handleStartDateChange(event) {
     const newStartDate = event.target.value;
     setSelectedDate(newStartDate);
@@ -75,7 +80,7 @@ export default function Index() {
               type="date"
               value={endDate}
               className="bg-transparent m-3"
-              max={minEndDate}
+              min={minEndDate}
               onChange={handleEndDateChange}
             />
             <button className="rounded-lg bg-lime-700 h-8 w-44 m-3 text-slate-100">Ver disponibilidad</button>
@@ -84,9 +89,15 @@ export default function Index() {
       </div>
       <Welcome />
       {habitaciones.map((habitacion) => (
-        <HabitacionesCard key={habitacion.id_habitacion} props={habitacion} />
+        <HabitacionesCard 
+          key={habitacion.id_habitacion} 
+          props={habitacion} 
+          selectedDate={formatDateWithTime(selectedDate)} 
+          endDate={formatDateWithTime(endDate)} 
+        />
       ))}
+
+     
     </Layout>
   );
 }
-  

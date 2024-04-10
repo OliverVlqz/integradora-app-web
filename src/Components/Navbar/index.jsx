@@ -14,13 +14,13 @@ const Navbar =() => {
     <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-lime-800'>
         <ul className='flex items-center gap-3 text-slate-200 font-medium'>
             <li className='font-semibold text-lg'>
-                <NavLink to='/'>
+                <NavLink to='/home'>
                 <img className="h-7" src="../../../public/logosinfondo.png" alt="" />
                 </NavLink>
 
             </li>
             <li>
-                <NavLink to='/' className = {({isActive}) => isActive ? activeStyle : undefined}>
+                <NavLink to='/home' className = {({isActive}) => isActive ? activeStyle : undefined}>
                     Inicio
                 </NavLink>
             </li>
@@ -68,7 +68,7 @@ const Navbar =() => {
             </li>
           
             <li>
-                <NavLink to='/sign-in' className = {({isActive}) => isActive ? activeStyle : undefined}>
+                <NavLink to='/' className = {({isActive}) => isActive ? activeStyle : undefined}>
                     Iniciar Sesión
                 </NavLink>
             </li>
