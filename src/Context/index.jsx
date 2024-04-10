@@ -79,26 +79,44 @@ export const ShoppingCartProvider = ({children}) =>{
         fetchData();
     }, []);
     const transformOrderData = (apiResponse) => {
-      // Suponiendo que apiResponse.data contiene el array de reservas
-      // y necesitamos ajustar cada reserva a la estructura deseada para `order`
-      return apiResponse.data.map(reserva => ({
+      // Asumiendo que apiResponse.data contiene el array de reservas
+      return apiResponse.data.map(reserva => {
+        // Fusionamos elementos y habitaciones en una sola lista de 'productos'
+        // Primero, verificamos si hay elementos disponibles
+        const productos = reserva.elementos.length > 0 ? reserva.elementos.map(elemento => ({
+          id_producto: elemento.id_producto,
+          nombre_producto: elemento.nombre_producto,
+          precio: elemento.precio,
+          descripcion: elemento.descripcion || '', // Asegurar que siempre haya un string
+          imagen_elemento: elemento.imagen_elemento || '', // Asegurar que siempre haya un string
+          paquetes: elemento.paquetes || [], // Asegurar que siempre haya un array
+          categoria: {
+            id_categoria: elemento.categoria.id_categoria,
+            nombrecategoria: elemento.categoria.nombrecategoria
+          }
+        })) : reserva.habitaciones.map(habitacion => ({
+          id_producto: habitacion.id_habitacion, // Usamos id_habitacion como id_producto
+          nombre_producto: `Habitación ${habitacion.tipoHabitacion.nombrehabitacion} - Número ${habitacion.num_habitacion}`,
+          precio: habitacion.precio,
+          descripcion: habitacion.descripcion,
+          imagen_elemento: habitacion.imagen_hab || '', // Asegurar que siempre haya un string
+          paquetes: [], // Las habitaciones no tienen paquetes, por lo que es un array vacío
+          categoria: {
+            id_categoria: habitacion.tipoHabitacion.id_tipohab,
+            nombrecategoria: habitacion.tipoHabitacion.nombrehabitacion
+          }
+        }));
+    
+        // Ahora, retornamos la estructura de la reserva ajustada
+        return {
           date: reserva.fecha_compra,
-          products: reserva.elementos.map(elemento => ({
-              id_producto: elemento.id_producto,
-              nombre_producto: elemento.nombre_producto,
-              precio: elemento.precio,
-              descripcion: elemento.descripcion || '', // Asegurar que siempre haya un string
-              imagen_elemento: elemento.imagen_elemento || '', // Asegurar que siempre haya un string
-              paquetes: elemento.paquetes || [], // Asegurar que siempre haya un array
-              categoria: {
-                  id_categoria: elemento.categoria.id_categoria,
-                  nombrecategoria: elemento.categoria.nombrecategoria
-              }
-          })),
+          products: productos,
           totalProducts: reserva.total_productos,
           totalPrice: reserva.total // Asumiendo que este es el total a pagar de la reserva
-      }));
-  };
+        };
+      });
+    };
+    
   
       const filteredItemsByTitle =(items, searchByTitle)=>{
         return items?.filter(item => item.nombre_producto.toLowerCase().includes(searchByTitle.toLowerCase()))
