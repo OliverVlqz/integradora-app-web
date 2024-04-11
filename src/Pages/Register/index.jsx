@@ -51,7 +51,7 @@ export default function Register() {
           console.log('Usuario registrado exitosamente');
          
           // redirige al usuario a la página de inicio de sesión sin recargar la pagina
-          window.location.href = '/sign-in';          
+          window.location.href = '/';          
         } else {
           // La solicitud falló
           console.error('Error al registrar el usuario');

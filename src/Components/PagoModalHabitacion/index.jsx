@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { ShoppingCartContext } from "../../Context";
 import CreditCard from "../CreditCard";
+import { redirect } from "react-router-dom";
+
 
 export default function PagoModalHabitacion() {
     const context = useContext(ShoppingCartContext);
@@ -72,8 +74,12 @@ export default function PagoModalHabitacion() {
           setMes('');
           setAño('');
           setCvv('');
-          context.closePagoModal();
+          window.location.href = '/my-orders/last';
+          context.closePagoHabitacionModal();
+        
       }
+    
+  
   };
   const realizarPost = async (data, token) => {
     const url = 'http://localhost:8080/api/reserva/crear/';
@@ -95,6 +101,7 @@ export default function PagoModalHabitacion() {
         const responseData = await response.json();
         console.log('Reserva realizada con éxito:', responseData);
         // Aquí puedes manejar la respuesta exitosa, como mostrar un mensaje al usuario
+        
     } catch (error) {
         console.error('Error en la petición POST:', error);
         // Manejar el error, como mostrar un mensaje al usuario
@@ -216,6 +223,8 @@ export default function PagoModalHabitacion() {
                   >
                     Cerrar
                   </button>
+
+                  
                   <button
                     className="bg-lime-500 text-white hover:bg-lime-800 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
@@ -223,6 +232,7 @@ export default function PagoModalHabitacion() {
                   >
                     Realizar pago
                   </button>
+                  
                 </div>
               </div>
             </div>

@@ -4,19 +4,19 @@ import { PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid'
 
 
 export default function UserTableRow(props) {
-  console.log(props.props)  
+  console.log(props)
     const{nombre, status} = props.props
     const rol = props.props.role.nombre
-     
-      
+    
+    
   
     const context = useContext(ShoppingCartContext)
     const showUserModal = (usuarioMod) => { 
         context.openUserModal()
         context.setUserToModify(usuarioMod)
-
-
-       
+    }
+    const deleteUser = () => {
+        
     }
   return (
     <tr className="text-gray-700">
@@ -28,7 +28,7 @@ export default function UserTableRow(props) {
         </div>
         <div>
           <p className="font-semibold text-black">{nombre}</p>
-          <p className="text-xs text-gray-600">Developer</p>
+      
         </div>
       </div>
     </td>
@@ -41,7 +41,7 @@ export default function UserTableRow(props) {
          <button className='bg-yellow-500 rounded-lg mr-2 h-8' onClick={() => showUserModal(props.props) }>
         <PencilSquareIcon className='h-6 w-12 text-white cursor-pointer' />
          </button>
-         <button className='bg-red-500 rounded-lg h-8'>
+         <button className='bg-red-500 rounded-lg h-8' onClick={deleteUser}>
         <TrashIcon className='h-6 w-12 text-white cursor-pointer'/>
          </button>
     </td>

@@ -22,6 +22,7 @@ function SignIn() {
         localStorage.setItem('actualUser', JSON.stringify(response.data.data));
         // Redireccionar a otra página, si es necesario
         // window.location.href = '/nueva-pagina';
+        window.location.href = '/home';
       }
     } catch (error) {
       console.error('Error al iniciar sesión:', error);

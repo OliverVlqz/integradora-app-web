@@ -3,7 +3,7 @@
     import { ShoppingCartContext } from '../../Context'
     const ProductDetail =()=>{
         const context = useContext(ShoppingCartContext)
-        
+        console.log(context.productToShow)
         return(
             <aside className={`${context.isProductDetailOpen ? 'flex' : 'hidden'} flex-col fixed right-0 
             border bg-white border-black
@@ -17,13 +17,20 @@
                 </div>
                 <figure className='px-6'>
                     <img  className='w-full h-56 rounded-lg object-cover'
-                    src={context.productToShow.imagen_elemento}
-                    alt={context.productToShow.nombre_producto} />
+                    src={context.productToShow.imagen_elemento || context.productToShow.imagen_hab }
+                    alt={context.productToShow.nombre_producto || context.productToShow.num_habitacion} />
                 </figure>
                 <p className='flex flex-col p-6'>
                     <span className='font-medium text-2xl mb-2'>${context.productToShow.precio}</span>
-                    <span className='font-medium text-md'>{context.productToShow.nombre_producto}</span>
+                    <span className='font-medium text-md'>{context.productToShow.nombre_producto || context.productToShow.num_habitacion}</span>
                     <span className='font-light text-sm'>{context.productToShow.descripcion}</span>
+                    {
+                        context.productToShow.capacidad && (
+                            <span className='font-light text-sm'> <strong className='font-bold'>Capacidad:</strong> {context.productToShow.capacidad}</span>
+                        )
+                        
+
+                    }
                 </p>
             </aside>
         )

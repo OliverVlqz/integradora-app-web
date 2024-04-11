@@ -9,7 +9,13 @@ export default function HabitacionesCard(props) {
     const handleReservar = () => {
         context.openPagoHabitacionModal(props)
     }
-
+    const showProduct= (productDetail)=>{
+        
+        context.openProductDetail()
+        context.setProductToShow(productDetail)
+        context.closeCheckoutSideMenu()
+    }
+    console.log(props.props)
 
 
   return (
@@ -24,7 +30,7 @@ export default function HabitacionesCard(props) {
             </p>
             <div className="">
             <button className="bg-lime-500  rounded-lg w-20 h-10 text-white hover:" onClick={handleReservar}>Reservar</button>
-            <button className="bg-emerald-600 m-2 rounded-lg w-20 h-10 text-white">Detalles</button>
+            <button className="bg-emerald-600 m-2 rounded-lg w-20 h-10 text-white" onClick={()=> showProduct(props.props)}>Detalles</button>
             </div>
             </div>
             <img  className= "w-40 h-32 object-cover rounded-lg"  src={imagen_hab} alt="Holi" />

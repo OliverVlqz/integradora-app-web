@@ -24,7 +24,7 @@ export const ShoppingCartProvider = ({children}) =>{
     const [filteredItems, setFilteredItems] = useState([])
     //Room to Buy
     const [roomToBuy, setRoomToBuy] = useState({})
-    
+    console.log(productToShow)
     useEffect(() => {
       const fetchData = async () => {
         try {

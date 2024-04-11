@@ -3,6 +3,7 @@ import axios from "axios";
 import Layout from "../../Components/Layout";
 import Welcome from "../../Components/Welcome";
 import HabitacionesCard from "../../Components/HabitacionesCard";
+import ProductDetail from "../../Components/ProductDetail";
 
 export default function Index() {
   const [habitaciones, setHabitaciones] = useState([]);
@@ -96,6 +97,7 @@ export default function Index() {
           endDate={formatDateWithTime(endDate)} 
         />
       ))}
+     <ProductDetail/>
 
      
     </Layout>
