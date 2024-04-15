@@ -1,7 +1,8 @@
-import { useContext } from "react"
-import { NavLink } from "react-router-dom"
-import { ShoppingCartContext } from "../../Context"
+
 import { ShoppingBagIcon } from "@heroicons/react/24/solid"
+import { useContext } from "react"
+import { ShoppingCartContext } from "../../Context"
+import { NavLink } from "react-router-dom"
 
 const Navbar =() => {
     const activeStyle = 'underline underline-offset-4'
@@ -13,7 +14,7 @@ const Navbar =() => {
 
     const usuarioCorreo = actualUser?.usuario?.correo || 'correo@correo.com' 
     const usuarioRole = actualUser?.usuario?.role?.id_role || null
-    console.log(usuarioRole)
+
     const handleLogout = () => {
         localStorage.removeItem('actualUser'); // Elimina el usuario actual de localStorage
         window.location.href = '/'; // Redirige al usuario a la página de inicio
@@ -58,11 +59,11 @@ const Navbar =() => {
                                 Crear habitaciones
                             </NavLink>
                         </li>
-                        <li>
+                        {/* <li>
                             <NavLink to={'/admin/users-form'} className={({isActive}) => isActive ? activeStyle: undefined}>
                                 Crear usuario
                             </NavLink>
-                        </li>
+                        </li> */}
                     </>
                 )}
                 {/* Fin de la condición */}

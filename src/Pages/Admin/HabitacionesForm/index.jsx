@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Layout from '../../../Components/Layout';
+import { XMarkIcon } from '@heroicons/react/24/solid';
 
 export default function HabitacionesForm() {
   const [habitacionData, setHabitacionData] = useState({
@@ -11,7 +12,7 @@ export default function HabitacionesForm() {
     descripcion: '',
     imagen_hab: '', // La imagen se almacenará en base64 aquí
     tipoHabitacion: {
-      id_tipohab: '' // Cambiado para coincidir con el formato JSON proporcionado
+      id_tipohab: 1 // Cambiado para coincidir con el formato JSON proporcionado
     },
     estatus:true
 
@@ -49,6 +50,7 @@ export default function HabitacionesForm() {
       reader.readAsDataURL(file);
     }
   };
+  console.log(habitacionData.tipoHabitacion.id_tipohab)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,7 +81,13 @@ export default function HabitacionesForm() {
       console.error('Error al enviar la solicitud:', error);
     }
   };
-  /// Haz un console log para ver la imagen en base64
+  const handleRemoveImage = () => {
+    setHabitacionData(prevState => ({
+      ...prevState,
+      imagen_hab: ''
+    }));
+  };
+  
   return (
     <Layout> 
       <h1 className='font-bold text-xl m-2'>Agregar Habitaciones</h1>
@@ -90,14 +98,14 @@ export default function HabitacionesForm() {
               Numero de habitacion
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               type="number"
               placeholder="Habitacion"
               name="num_habitacion"
               value={habitacionData.num_habitacion}
               onChange={handleChange}
             />
-            <p className="text-red-500 text-xs italic">Rellena este campo</p>
+           
           </div>
           <div className="w-full md:w-1/2 px-3">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-last-name">
@@ -169,7 +177,7 @@ export default function HabitacionesForm() {
                 value={habitacionData.tipoHabitacion.id_tipohab}
                 onChange={handleChange}
               >
-                <option value={1}>Normal</option>
+                <option value={1}>Sencilla</option>
                 <option value={2}>Premium</option>
                 <option value={3}>Residencial</option>
               </select>
@@ -179,20 +187,25 @@ export default function HabitacionesForm() {
             </div>
           </div>
         </div>
-        <label htmlFor="uploadFile1"
-        className="bg-white text-black text-base rounded w-full h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed mx-auto font-[sans-serif] mt-6">
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-8 mb-2 fill-black" viewBox="0 0 32 32">
-          <path
-            d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
-            data-original="#000000" />
-          <path
-            d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
-            data-original="#000000" />
-        </svg>
-        Sube tu archivo
-        <input type="file" id='uploadFile1' className="hidden" onChange={handleImageChange} />
-        <p className="text-xs text-gray-400 mt-2">PNG, JPG, y WEBP son permitidos.</p>
-      </label>
+        {habitacionData.imagen_hab ? (
+          <div className="relative">
+            <img src={habitacionData.imagen_hab} alt="Uploaded" className="m-auto w-40 h-32 rounded-lg object-cover justify-center" />
+            <button
+              type="button"
+              onClick={handleRemoveImage}
+              className=" absolute -top-1 left-80 bg-red-300 text-white p-1 rounded-full"
+            >
+              <XMarkIcon className="h-3 w-3 text-black cursor-pointer" />
+            </button>
+          </div>
+        ) : (
+          <label htmlFor="uploadFile1" className="bg-white text-black text-base rounded w-full h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed mx-auto font-[sans-serif] mt-6">
+            <div>Sube tu archivo</div>
+            <input type="file" id='uploadFile1' className="hidden" onChange={handleImageChange} />
+            <p className="text-xs text-gray-400 mt-2">PNG, JPG, y WEBP son permitidos.</p>
+          </label>
+        )}
+
       <button className="bg-lime-900 hover:bg-lime-600 text-white font-bold py-2 px-4 mt-4 rounded-lg w-full" type="submit">
           Crear Habitacion
       </button>
