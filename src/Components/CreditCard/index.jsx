@@ -3,7 +3,7 @@ export default function CreditCard({ nombre, numero, mes, año, cvv }) {
   return (
     <div className="bg-white  flex">
         <div className="space-y-16">
-            <div className="w-96 h-56 m-auto bg-red-100 rounded-xl  text-white shadow-2xl transition-transform transform hover:scale-110">
+            <div className="w-96 h-56 m-auto bg-red-100 rounded-xl text-white shadow-2xl transition-transform transform hover:scale-110">
             
                 <img className="relative object-cover w-full h-full rounded-xl" src="https://assets-global.website-files.com/5a9ee6416e90d20001b20038/635ad2beab62109bdc7466e3_horizontal%20-%202022-10-27T214932.488.svg"/>
                 

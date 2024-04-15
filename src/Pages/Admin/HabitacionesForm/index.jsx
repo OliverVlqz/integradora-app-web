@@ -77,6 +77,7 @@ export default function HabitacionesForm() {
       const response = await axios.post('http://localhost:8080/api/habitacion/crear/', dataToSend, config);
       console.log('Respuesta:', response.data);
       console.log('Habitacion se creo correctamente')
+      window.location.href = '/admin/habitaciones';
     } catch (error) {
       console.error('Error al enviar la solicitud:', error);
     }
