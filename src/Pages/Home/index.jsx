@@ -48,7 +48,7 @@ export default function Index() {
         const actualUser = JSON.parse(localStorage.getItem('actualUser'));
         const token = actualUser.token;
 
-        const response = await axios.get('http://localhost:8080/api/habitacion/', {
+        const response = await axios.get('http://api5a-back-env.eba-kknjdvq2.us-east-1.elasticbeanstalk.com/api/habitacion/', {
           headers: {
             Authorization: `Bearer ${token}`
           }

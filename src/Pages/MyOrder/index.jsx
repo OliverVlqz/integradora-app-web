@@ -19,7 +19,7 @@ function MyOrder() {
           <Link to={'/my-orders'} className=" absolute left-0 ">
           <ChevronLeftIcon className='h-6 w-6 text-black cursor-pointer'/>
           </Link>
-          <h1>MyOrder</h1>
+          <h1>Mi compra</h1>
 
         </div>
         

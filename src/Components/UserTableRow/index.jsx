@@ -22,7 +22,7 @@ export default function UserTableRow(props) {
   
       try {
         const currentUser = JSON.parse(localStorage.getItem('actualUser'));
-        const response = await axios.put(`http://localhost:8080/api/usuario/${id}/changeStatus?status=${newStatus}`, {}, {
+        const response = await axios.put(`http://api5a-back-env.eba-kknjdvq2.us-east-1.elasticbeanstalk.com/api/usuario/${id}/changeStatus?status=${newStatus}`, {}, {
           headers: {
             Authorization: `${currentUser.tokenType} ${currentUser.token}` // Usa el token desde localStorage
           }
@@ -48,7 +48,7 @@ export default function UserTableRow(props) {
           <div className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
         </div>
         <div>
-          <p className="font-semibold text-black">{nombre || 'usuario '}</p>
+          <p className="font-semibold text-black">{nombre || 'Cliente'}</p>
       
         </div>
       </div>

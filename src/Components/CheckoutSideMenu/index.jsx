@@ -49,7 +49,7 @@ const CheckoutSideMenu=()=>{
         const token = JSON.parse(localStorage.getItem('actualUser')).token;
     
         try {
-            const response = await fetch('http://localhost:8080/api/reserva/crear/', {
+            const response = await fetch('http://api5a-back-env.eba-kknjdvq2.us-east-1.elasticbeanstalk.com/api/reserva/crear/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

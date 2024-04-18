@@ -38,7 +38,7 @@ export default function Register() {
     };
 
     // Enviar la solicitud POST a la API
-    fetch('http://localhost:8080/api/usuario/registro/', {
+    fetch('http://api5a-back-env.eba-kknjdvq2.us-east-1.elasticbeanstalk.com/usuario/registro/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -19,7 +19,7 @@ export default function HabitacionesInfo() {
         }
         const token = JSON.parse(actualUser).token;
 
-        const response = await axios.get('http://localhost:8080/api/habitacion/', {
+        const response = await axios.get('http://api5a-back-env.eba-kknjdvq2.us-east-1.elasticbeanstalk.com/api/habitacion/', {
           headers: {
             Authorization: `Bearer ${token}`
           }

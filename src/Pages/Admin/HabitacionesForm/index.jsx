@@ -17,6 +17,8 @@ export default function HabitacionesForm() {
     estatus:true
 
   });
+  
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,6 +56,16 @@ export default function HabitacionesForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { num_habitacion, capacidad, cant_camas, precio, descripcion, imagen_hab } = habitacionData;
+    
+    // Validar que los campos no estén vacíos
+    if (!num_habitacion || !capacidad || !cant_camas || !precio || !descripcion || !imagen_hab) {
+      setError('Todos los campos son obligatorios.');
+      return;
+    }
+
+    setError(''); // Limpiar cualquier error anterior
+
     try {
       // Obtener el token del localStorage
       const actualUser = JSON.parse(localStorage.getItem('actualUser'));
@@ -74,7 +86,7 @@ export default function HabitacionesForm() {
       };
 
       // Realizar la solicitud POST con el token en el encabezado
-      const response = await axios.post('http://localhost:8080/api/habitacion/crear/', dataToSend, config);
+      const response = await axios.post('http://api5a-back-env.eba-kknjdvq2.us-east-1.elasticbeanstalk.com/api/habitacion/crear/', dataToSend, config);
       console.log('Respuesta:', response.data);
       console.log('Habitacion se creo correctamente')
       window.location.href = '/admin/habitaciones';
@@ -206,6 +218,7 @@ export default function HabitacionesForm() {
             <p className="text-xs text-gray-400 mt-2">PNG, JPG, y WEBP son permitidos.</p>
           </label>
         )}
+        {error && <p className="text-red-500 text-center">{error}</p>}
 
       <button className="bg-lime-900 hover:bg-lime-600 text-white font-bold py-2 px-4 mt-4 rounded-lg w-full" type="submit">
           Crear Habitacion

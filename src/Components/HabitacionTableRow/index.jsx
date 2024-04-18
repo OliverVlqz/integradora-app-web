@@ -6,7 +6,7 @@ export default function HabitacionesTableRow(props) {
 
     const changeStatus = async () => {
         const currentStatus = !estatus; // Cambiar el estatus al opuesto
-        const url = `http://localhost:8080/api/habitacion/${id_habitacion}/changestatus`;
+        const url = `http://api5a-back-env.eba-kknjdvq2.us-east-1.elasticbeanstalk.com/api/habitacion/${id_habitacion}/changestatus`;
 
         // Obtener el token de autenticación desde localStorage
         const user = JSON.parse(localStorage.getItem('actualUser'));

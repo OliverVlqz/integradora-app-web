@@ -35,7 +35,7 @@ export const ShoppingCartProvider = ({children}) =>{
               Authorization: `Bearer ${token}`
             }
           };
-         fetch('http://localhost:8080/api/elemento/', config).
+         fetch('http://api5a-back-env.eba-kknjdvq2.us-east-1.elasticbeanstalk.com/api/elemento/', config).
           then( response=> response.json()).
           then(data=>{
             //dentro de data necesito el array de elementos que esta dentro de data 
@@ -64,7 +64,7 @@ export const ShoppingCartProvider = ({children}) =>{
                 };
                 
 
-                const response = await fetch(`http://localhost:8080/api/reserva/usuario/${idUsuario}`, config);
+                const response = await fetch(`http://api5a-back-env.eba-kknjdvq2.us-east-1.elasticbeanstalk.com/api/reserva/usuario/${idUsuario}`, config);
                 if (!response.ok) throw new Error('Respuesta de red no fue ok');
 
                 const data = await response.json();

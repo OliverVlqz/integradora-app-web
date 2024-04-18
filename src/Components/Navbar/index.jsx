@@ -59,11 +59,11 @@ const Navbar =() => {
                                 Crear habitaciones
                             </NavLink>
                         </li>
-                        {/* <li>
+                         <li>
                             <NavLink to={'/admin/users-form'} className={({isActive}) => isActive ? activeStyle: undefined}>
                                 Crear usuario
                             </NavLink>
-                        </li> */}
+                        </li> 
                     </>
                 )}
                 {/* Fin de la condición */}

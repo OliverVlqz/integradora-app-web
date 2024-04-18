@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { ShoppingCartContext } from "../../Context";
 import CreditCard from "../CreditCard";
-import { redirect } from "react-router-dom";
 
 
 export default function PagoModalHabitacion() {

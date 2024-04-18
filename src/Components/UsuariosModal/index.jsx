@@ -37,7 +37,7 @@ export default function UsuariosModal() {
 
   const handleSaveChanges = async () => {
     const token = JSON.parse(localStorage.getItem('actualUser'))?.token;
-    const url = `http://localhost:8080/api/usuario/${userToModify.id}`;
+    const url = `http://api5a-back-env.eba-kknjdvq2.us-east-1.elasticbeanstalk.com/api/usuario/${userToModify.id}`;
     const updatedUser = {
       ...formData,
       id: userToModify.id,

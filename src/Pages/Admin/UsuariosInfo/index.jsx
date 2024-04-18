@@ -19,7 +19,7 @@ export default function UsuariosInfo() {
         }
         const token = JSON.parse(actualUser).token;
 
-        const response = await axios.get('http://localhost:8080/api/usuario/', {
+        const response = await axios.get('http://api5a-back-env.eba-kknjdvq2.us-east-1.elasticbeanstalk.com/api/usuario/', {
           headers: {
             Authorization: `Bearer ${token}`
           }
